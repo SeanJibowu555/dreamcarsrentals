@@ -379,12 +379,58 @@
     display: inline-block;
     margin-bottom: 14px;
   }
-  .car-icon {
-    font-size: 52px;
-    margin-bottom: 12px;
-    display: block;
-    filter: drop-shadow(0 4px 16px rgba(212,168,64,0.3));
+  .car-gallery {
+    width: 100%;
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    background: #0a0c10;
   }
+  .car-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.4s ease;
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+  }
+  .car-gallery img.active { opacity: 1; }
+  .gallery-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+  }
+  .gallery-dot {
+    width: 6px; height: 6px;
+    background: rgba(255,255,255,0.35);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .gallery-dot.active { background: var(--gold); }
+  .gallery-prev, .gallery-next {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text);
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 2;
+    transition: background 0.2s;
+  }
+  .gallery-prev:hover, .gallery-next:hover { background: rgba(212,168,64,0.25); }
+  .gallery-prev { left: 10px; }
+  .gallery-next { right: 10px; }
   .car-name {
     font-family: var(--display);
     font-size: 28px;
@@ -756,71 +802,73 @@
 
       <div class="cars-grid">
 
-        <!-- Car 1 -->
+        <!-- Car 1 — BMW 4 Series Gran Coupé -->
         <div class="car-card">
           <span class="car-badge">Available Now</span>
-          <span class="car-icon">🚗</span>
-          <div class="car-name">Car One</div>
-          <p class="car-desc">A reliable, fuel-efficient everyday car. Perfect for commuting, business trips, or anyone who needs a dependable vehicle on flexible terms.</p>
+
+          <div class="car-gallery" id="gallery-bmw">
+            <img src="images/bmw-front.jpeg" alt="BMW 4 Series Gran Coupé front" class="active" />
+            <img src="images/bmw-side.jpeg" alt="BMW 4 Series Gran Coupé side" />
+            <img src="images/bmw-side2.jpeg" alt="BMW 4 Series Gran Coupé angle" />
+            <button class="gallery-prev" aria-label="Previous">‹</button>
+            <button class="gallery-next" aria-label="Next">›</button>
+            <div class="gallery-dots">
+              <div class="gallery-dot active"></div>
+              <div class="gallery-dot"></div>
+              <div class="gallery-dot"></div>
+            </div>
+          </div>
+
+          <div class="car-name">BMW 4 Series Gran Coupé</div>
+          <p class="car-desc">M Sport trim, Alpine White. A sleek, powerful coupé with presence — perfect for those who want to drive something that turns heads without the long-term finance commitment.</p>
 
           <div class="car-pricing">
             <div class="price-row">
-              <span class="price-label">Daily</span>
-              <span class="price-val">£XX</span>
-              <span class="price-unit">/ day</span>
-            </div>
-            <div class="price-row">
-              <span class="price-label">Weekly</span>
-              <span class="price-val">£XXX</span>
-              <span class="price-unit">/ week</span>
-            </div>
-            <div class="price-row">
-              <span class="price-label">Monthly</span>
-              <span class="price-val">£XXX</span>
-              <span class="price-unit">/ month</span>
+              <span class="price-label">Pricing</span>
+              <span class="price-val" style="font-size:16px; color: var(--muted);">Contact us for rates</span>
             </div>
           </div>
 
           <div class="car-specs">
-            <span class="spec-tag">Manual / Auto</span>
-            <span class="spec-tag">X Seats</span>
-            <span class="spec-tag">Petrol / Diesel</span>
-            <span class="spec-tag">Year</span>
+            <span class="spec-tag">Automatic</span>
+            <span class="spec-tag">5 Seats</span>
+            <span class="spec-tag">Petrol</span>
+            <span class="spec-tag">M Sport</span>
+            <span class="spec-tag">Alpine White</span>
           </div>
 
           <a class="btn btn-gold" href="#enquiry">Enquire About This Car</a>
         </div>
 
-        <!-- Car 2 -->
+        <!-- Car 2 — Mercedes A-Class -->
         <div class="car-card">
           <span class="car-badge">Available Now</span>
-          <span class="car-icon">🚙</span>
-          <div class="car-name">Car Two</div>
-          <p class="car-desc">A spacious and comfortable option — ideal for families, longer journeys, or anyone wanting a bit more room without the long-term commitment.</p>
+
+          <div class="car-gallery" id="gallery-merc">
+            <img src="images/both-cars.jpeg" alt="Mercedes A-Class" class="active" />
+            <button class="gallery-prev" aria-label="Previous">‹</button>
+            <button class="gallery-next" aria-label="Next">›</button>
+            <div class="gallery-dots">
+              <div class="gallery-dot active"></div>
+            </div>
+          </div>
+
+          <div class="car-name">Mercedes A-Class</div>
+          <p class="car-desc">2019 plate, Alpine White. A premium compact with a refined interior and sharp styling — ideal for city driving or anyone who wants Mercedes quality on a flexible rental.</p>
 
           <div class="car-pricing">
             <div class="price-row">
-              <span class="price-label">Daily</span>
-              <span class="price-val">£XX</span>
-              <span class="price-unit">/ day</span>
-            </div>
-            <div class="price-row">
-              <span class="price-label">Weekly</span>
-              <span class="price-val">£XXX</span>
-              <span class="price-unit">/ week</span>
-            </div>
-            <div class="price-row">
-              <span class="price-label">Monthly</span>
-              <span class="price-val">£XXX</span>
-              <span class="price-unit">/ month</span>
+              <span class="price-label">Pricing</span>
+              <span class="price-val" style="font-size:16px; color: var(--muted);">Contact us for rates</span>
             </div>
           </div>
 
           <div class="car-specs">
-            <span class="spec-tag">Manual / Auto</span>
-            <span class="spec-tag">X Seats</span>
-            <span class="spec-tag">Petrol / Diesel</span>
-            <span class="spec-tag">Year</span>
+            <span class="spec-tag">Automatic</span>
+            <span class="spec-tag">5 Seats</span>
+            <span class="spec-tag">Petrol</span>
+            <span class="spec-tag">2019</span>
+            <span class="spec-tag">Alpine White</span>
           </div>
 
           <a class="btn btn-gold" href="#enquiry">Enquire About This Car</a>
@@ -963,9 +1011,9 @@
               <label for="fcar">Preferred Car</label>
               <select id="fcar" name="car">
                 <option value="" disabled selected>Which car interests you?</option>
-                <option value="car-1">Car One</option>
-                <option value="car-2">Car Two</option>
-                <option value="any">Any / Not sure yet</option>
+                  <option value="bmw-4-series">BMW 4 Series Gran Coupé</option>
+                  <option value="mercedes-a-class">Mercedes A-Class</option>
+                  <option value="any">Any / Not sure yet</option>
               </select>
             </div>
 
@@ -1101,7 +1149,28 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = buildMailto();
   });
 
-  // Scroll reveal
+  // Image galleries
+  document.querySelectorAll('.car-gallery').forEach(gallery => {
+    const imgs = gallery.querySelectorAll('img');
+    const dots = gallery.querySelectorAll('.gallery-dot');
+    const prev = gallery.querySelector('.gallery-prev');
+    const next = gallery.querySelector('.gallery-next');
+    if (imgs.length <= 1) {
+      if (prev) prev.style.display = 'none';
+      if (next) next.style.display = 'none';
+    }
+    let current = 0;
+    function goTo(n) {
+      imgs[current].classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = (n + imgs.length) % imgs.length;
+      imgs[current].classList.add('active');
+      dots[current]?.classList.add('active');
+    }
+    prev?.addEventListener('click', () => goTo(current - 1));
+    next?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  });
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
