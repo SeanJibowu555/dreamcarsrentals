@@ -1,0 +1,1126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="DreamCarsRentals — Flexible car rentals daily, weekly & monthly. Fast approvals, no long-term commitment. Enquire now." />
+  <title>DreamCarsRentals – Flexible Car Rentals</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="DreamCarsRentals" />
+  <meta property="og:description" content="Flexible Car Rentals – Daily, Weekly & Monthly. Fast, simple, no long-term commitment." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ─── TOKENS ─── */
+  :root {
+    --bg:       #080a0d;
+    --bg2:      #0d1017;
+    --card:     rgba(255,255,255,0.045);
+    --card-h:   rgba(255,255,255,0.075);
+    --line:     rgba(255,255,255,0.09);
+    --text:     rgba(255,255,255,0.93);
+    --muted:    rgba(255,255,255,0.62);
+    --muted2:   rgba(255,255,255,0.40);
+    --gold:     #d4a840;
+    --gold2:    #f0c870;
+    --red:      #e8362a;
+    --shadow:   0 24px 64px rgba(0,0,0,0.70);
+    --max:      1100px;
+    --ff:       'DM Sans', sans-serif;
+    --display:  'Bebas Neue', sans-serif;
+    --mono:     'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff);
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Ambient background glow */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 80% -10%, rgba(212,168,64,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 400px at -10% 60%, rgba(232,54,42,0.07), transparent 55%),
+      radial-gradient(ellipse 500px 400px at 50% 100%, rgba(212,168,64,0.06), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid rgba(212,168,64,0.75);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 12px 20px;
+    border: 1px solid rgba(255,255,255,0.13);
+    background: rgba(255,255,255,0.06);
+    color: var(--text);
+    font-family: var(--ff);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: transform 150ms, background 150ms, border-color 150ms;
+    text-align: center;
+  }
+  .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.22); }
+
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), #b8922e);
+    border-color: var(--gold);
+    color: #0a0800;
+    font-weight: 700;
+  }
+  .btn-gold:hover { background: linear-gradient(135deg, var(--gold2), var(--gold)); border-color: var(--gold2); transform: translateY(-2px); }
+
+  .btn-outline {
+    border-color: rgba(212,168,64,0.40);
+    color: var(--gold);
+    background: transparent;
+  }
+  .btn-outline:hover { background: rgba(212,168,64,0.08); border-color: var(--gold); }
+
+  .btn-whatsapp {
+    background: #1fad52;
+    border-color: #1fad52;
+    color: #fff;
+    font-weight: 700;
+  }
+  .btn-whatsapp:hover { background: #18994a; transform: translateY(-2px); }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(8,10,13,0.80);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    gap: 14px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--gold), #8a5e1a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 18px;
+    color: #0a0800;
+    flex-shrink: 0;
+    letter-spacing: 1px;
+  }
+  .brand-name {
+    font-family: var(--display);
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--text);
+    line-height: 1;
+  }
+  .brand-sub {
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: var(--mono);
+    display: block;
+    margin-top: 1px;
+  }
+
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 8px 12px;
+    transition: color 150ms, background 150ms;
+  }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+
+  .nav-cta { display: flex; gap: 8px; align-items: center; }
+
+  .hamburger {
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 9px 12px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    display: none;
+    border-top: 1px solid var(--line);
+    padding: 14px 0;
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 11px 14px;
+    color: var(--muted);
+    font-size: 14px;
+    transition: color 150ms, background 150ms;
+  }
+  .mobile-menu a:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .mobile-menu.open { display: block; }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(52px, 8vw, 88px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .hero-title span {
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-family: var(--display);
+    font-size: clamp(18px, 3vw, 26px);
+    color: var(--muted);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+
+  .hero-tagline {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 44ch;
+    margin-bottom: 30px;
+    line-height: 1.7;
+  }
+
+  .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* Hero right — stat card */
+  .hero-right {}
+  .stat-panel {
+    border: 1px solid var(--line);
+    background: linear-gradient(160deg, rgba(212,168,64,0.07), rgba(255,255,255,0.02));
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-panel::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(212,168,64,0.15), transparent 65%);
+    pointer-events: none;
+  }
+  .stat-panel h3 {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-tile {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.25);
+    padding: 14px 12px;
+  }
+  .stat-tile strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .stat-tile span { font-size: 11px; color: var(--muted2); font-family: var(--mono); }
+
+  .trust-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+  .pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.03);
+    padding: 6px 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── SECTION SCAFFOLD ─── */
+  section { padding: 60px 0; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(30px, 5vw, 44px);
+    letter-spacing: 1.5px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 56ch;
+    margin-bottom: 36px;
+  }
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), rgba(212,168,64,0.1), transparent);
+    margin-bottom: 40px;
+    opacity: 0.35;
+  }
+
+  /* ─── CARS ─── */
+  #cars { background: var(--bg2); }
+  .cars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .car-card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 28px;
+    position: relative;
+    transition: transform 180ms, border-color 180ms, background 180ms;
+  }
+  .car-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212,168,64,0.30);
+    background: var(--card-h);
+  }
+  .car-badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: #0a0800;
+    background: var(--gold);
+    padding: 4px 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+  .car-icon {
+    font-size: 52px;
+    margin-bottom: 12px;
+    display: block;
+    filter: drop-shadow(0 4px 16px rgba(212,168,64,0.3));
+  }
+  .car-name {
+    font-family: var(--display);
+    font-size: 28px;
+    letter-spacing: 1.5px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .car-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+  .car-pricing { margin-bottom: 20px; }
+  .price-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 5px; }
+  .price-label { font-family: var(--mono); font-size: 10px; color: var(--muted2); width: 60px; flex-shrink: 0; text-transform: uppercase; letter-spacing: 1px; }
+  .price-val { font-family: var(--display); font-size: 22px; color: var(--gold); letter-spacing: 1px; }
+  .price-unit { font-size: 12px; color: var(--muted2); }
+
+  .car-specs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .spec-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted2);
+    border: 1px solid var(--line);
+    padding: 4px 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .coming-soon {
+    margin-top: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted2);
+    border: 1px dashed rgba(212,168,64,0.20);
+    padding: 14px 18px;
+    text-align: center;
+    letter-spacing: 0.8px;
+  }
+  .coming-soon span { color: var(--gold); }
+
+  /* ─── HOW IT WORKS ─── */
+  #how { }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .step-card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 28px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .step-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0.5;
+  }
+  .step-num {
+    font-family: var(--display);
+    font-size: 56px;
+    color: rgba(212,168,64,0.12);
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .step-title {
+    font-family: var(--display);
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+  /* ─── REQUIREMENTS ─── */
+  #requirements { background: var(--bg2); }
+  .req-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .req-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 18px 20px;
+  }
+  .req-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(212,168,64,0.12);
+    border: 1px solid rgba(212,168,64,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .req-text strong { font-size: 13px; color: var(--text); display: block; margin-bottom: 2px; }
+  .req-text span { font-size: 12px; color: var(--muted2); }
+
+  /* ─── ENQUIRY FORM ─── */
+  #enquiry { }
+  .enquiry-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; align-items: start; }
+
+  .form-card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 32px;
+  }
+  .form-card h3 {
+    font-family: var(--display);
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
+    color: var(--text);
+  }
+
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted2);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.10);
+    color: var(--text);
+    font-family: var(--ff);
+    font-size: 14px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 150ms;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--muted2); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: rgba(212,168,64,0.55); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+  .form-group select option { background: #111; color: var(--text); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+
+  /* Side contact panel */
+  .contact-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .contact-card {
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 22px;
+  }
+  .contact-card h4 {
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .contact-card p { font-size: 13px; color: var(--muted); margin-bottom: 14px; line-height: 1.6; }
+  .wa-number {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--gold);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .trust-card {
+    border: 1px solid var(--line);
+    background: linear-gradient(135deg, rgba(212,168,64,0.06), rgba(255,255,255,0.02));
+    padding: 22px;
+  }
+  .trust-card h4 {
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .trust-list { list-style: none; }
+  .trust-list li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .trust-list li:last-child { border-bottom: none; }
+  .trust-list li::before {
+    content: '✓';
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0;
+    margin-top: 40px;
+  }
+  .foot-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .foot-left { font-size: 12px; color: var(--muted2); font-family: var(--mono); }
+  .foot-right { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .foot-right a { font-size: 12px; color: var(--muted2); transition: color 150ms; }
+  .foot-right a:hover { color: var(--gold); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * { animation: fadeUp 0.55s ease both; }
+  .hero-eyebrow  { animation-delay: 0.05s; }
+  .hero-title    { animation-delay: 0.12s; }
+  .hero-subtitle { animation-delay: 0.18s; }
+  .hero-tagline  { animation-delay: 0.22s; }
+  .hero-actions  { animation-delay: 0.28s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .cars-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .req-grid { grid-template-columns: 1fr; }
+    .enquiry-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .nav-cta .btn { display: none; }
+    .nav-cta .btn:last-child { display: inline-flex; }
+    .section-title { font-size: 32px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero { padding: 50px 0 40px; }
+    section { padding: 44px 0; }
+    .form-card { padding: 20px; }
+    .car-card { padding: 20px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══ NAV ═══ -->
+<header class="nav" role="banner">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="DreamCarsRentals home">
+        <div class="logo-mark">DC</div>
+        <div>
+          <div class="brand-name">DreamCarsRentals</div>
+          <span class="brand-sub">Flexible Car Rentals</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#cars">Cars</a>
+        <a href="#how">How It Works</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#enquiry">Enquire</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-outline" href="https://wa.me/447000000000" target="_blank" rel="noopener">WhatsApp Us</a>
+        <a class="btn btn-gold" href="#enquiry">Enquire Now</a>
+        <button class="btn hamburger" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="#cars">Cars</a>
+      <a href="#how">How It Works</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#enquiry">Enquire Now</a>
+      <a href="https://wa.me/447000000000" target="_blank" rel="noopener">WhatsApp Us</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<main id="top">
+  <div class="container">
+    <section class="hero" aria-label="Hero">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-eyebrow">London, UK · Est. 2024</div>
+          <h1 class="hero-title">DREAM<span>CARS</span><br>RENTALS</h1>
+          <div class="hero-subtitle">Daily · Weekly · Monthly</div>
+          <p class="hero-tagline">Fast, simple, no long-term commitment. Get behind the wheel of a quality car on your terms — without the dealership drama.</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#enquiry">Enquire Now</a>
+            <a class="btn btn-outline" href="#cars">View Cars</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="stat-panel">
+            <h3>Why DreamCarsRentals</h3>
+            <div class="stat-grid">
+              <div class="stat-tile">
+                <strong>24hr</strong>
+                <span>Fast approvals</span>
+              </div>
+              <div class="stat-tile">
+                <strong>3</strong>
+                <span>Rental options</span>
+              </div>
+              <div class="stat-tile">
+                <strong>0</strong>
+                <span>Long-term ties</span>
+              </div>
+              <div class="stat-tile">
+                <strong>UK</strong>
+                <span>Based & operated</span>
+              </div>
+            </div>
+            <div class="trust-pills">
+              <div class="pill">Flexible Terms</div>
+              <div class="pill">Fast Approvals</div>
+              <div class="pill">Quality Vehicles</div>
+              <div class="pill">Reliable Service</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ CARS ═══ -->
+  <section id="cars" aria-label="Available cars">
+    <div class="container">
+      <div class="section-label">Available Now</div>
+      <h2 class="section-title">Our Vehicles</h2>
+      <p class="section-sub">Handpicked, well-maintained cars available for flexible rental. More vehicles being added regularly.</p>
+      <div class="section-divider"></div>
+
+      <div class="cars-grid">
+
+        <!-- Car 1 -->
+        <div class="car-card">
+          <span class="car-badge">Available Now</span>
+          <span class="car-icon">🚗</span>
+          <div class="car-name">Car One</div>
+          <p class="car-desc">A reliable, fuel-efficient everyday car. Perfect for commuting, business trips, or anyone who needs a dependable vehicle on flexible terms.</p>
+
+          <div class="car-pricing">
+            <div class="price-row">
+              <span class="price-label">Daily</span>
+              <span class="price-val">£XX</span>
+              <span class="price-unit">/ day</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Weekly</span>
+              <span class="price-val">£XXX</span>
+              <span class="price-unit">/ week</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Monthly</span>
+              <span class="price-val">£XXX</span>
+              <span class="price-unit">/ month</span>
+            </div>
+          </div>
+
+          <div class="car-specs">
+            <span class="spec-tag">Manual / Auto</span>
+            <span class="spec-tag">X Seats</span>
+            <span class="spec-tag">Petrol / Diesel</span>
+            <span class="spec-tag">Year</span>
+          </div>
+
+          <a class="btn btn-gold" href="#enquiry">Enquire About This Car</a>
+        </div>
+
+        <!-- Car 2 -->
+        <div class="car-card">
+          <span class="car-badge">Available Now</span>
+          <span class="car-icon">🚙</span>
+          <div class="car-name">Car Two</div>
+          <p class="car-desc">A spacious and comfortable option — ideal for families, longer journeys, or anyone wanting a bit more room without the long-term commitment.</p>
+
+          <div class="car-pricing">
+            <div class="price-row">
+              <span class="price-label">Daily</span>
+              <span class="price-val">£XX</span>
+              <span class="price-unit">/ day</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Weekly</span>
+              <span class="price-val">£XXX</span>
+              <span class="price-unit">/ week</span>
+            </div>
+            <div class="price-row">
+              <span class="price-label">Monthly</span>
+              <span class="price-val">£XXX</span>
+              <span class="price-unit">/ month</span>
+            </div>
+          </div>
+
+          <div class="car-specs">
+            <span class="spec-tag">Manual / Auto</span>
+            <span class="spec-tag">X Seats</span>
+            <span class="spec-tag">Petrol / Diesel</span>
+            <span class="spec-tag">Year</span>
+          </div>
+
+          <a class="btn btn-gold" href="#enquiry">Enquire About This Car</a>
+        </div>
+
+      </div>
+
+      <div class="coming-soon" style="margin-top: 18px;">
+        <span>More vehicles coming soon</span> — check back or enquire for availability
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section id="how" aria-label="How it works">
+    <div class="container">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-sub">Three steps from enquiry to driving. No complicated paperwork, no hidden surprises.</p>
+      <div class="section-divider"></div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-title">Choose a Car</div>
+          <p class="step-desc">Browse our available vehicles above and decide which one suits your needs and budget. Daily, weekly, or monthly — you pick the term.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-title">Send Enquiry</div>
+          <p class="step-desc">Fill in the enquiry form below or message us on WhatsApp. Tell us which car, how long you need it, and your budget. We'll get back to you fast.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-title">Get Approved & Drive</div>
+          <p class="step-desc">We'll verify your licence and ID, take a deposit, and you're good to go. Quick checks, no nonsense.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ REQUIREMENTS ═══ -->
+  <section id="requirements" aria-label="Rental requirements">
+    <div class="container">
+      <div class="section-label">Before You Enquire</div>
+      <h2 class="section-title">Requirements</h2>
+      <p class="section-sub">To keep things running smoothly and protect everyone, here's what you'll need before renting.</p>
+      <div class="section-divider"></div>
+
+      <div class="req-grid">
+        <div class="req-item">
+          <div class="req-icon">🪪</div>
+          <div class="req-text">
+            <strong>Age 21 or Over</strong>
+            <span>Renters must be at least 21 years old at the time of rental.</span>
+          </div>
+        </div>
+
+        <div class="req-item">
+          <div class="req-icon">🚗</div>
+          <div class="req-text">
+            <strong>Valid UK Driving Licence</strong>
+            <span>A full, valid UK driving licence is required. No provisional licences.</span>
+          </div>
+        </div>
+
+        <div class="req-item">
+          <div class="req-icon">💷</div>
+          <div class="req-text">
+            <strong>Deposit Required</strong>
+            <span>A refundable security deposit is required at the start of your rental. Amount varies by vehicle.</span>
+          </div>
+        </div>
+
+        <div class="req-item">
+          <div class="req-icon">✅</div>
+          <div class="req-text">
+            <strong>ID Checks</strong>
+            <span>Standard identity verification required. Proof of address and photo ID will be checked.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ENQUIRY FORM ═══ -->
+  <section id="enquiry" aria-label="Enquiry form">
+    <div class="container">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Make an Enquiry</h2>
+      <p class="section-sub">Fill in the form and we'll get back to you as soon as possible. Prefer a quick chat? Message us on WhatsApp.</p>
+      <div class="section-divider"></div>
+
+      <div class="enquiry-grid">
+        <div class="form-card">
+          <h3>Your Enquiry</h3>
+          <form id="enquiryForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">Full Name</label>
+                <input type="text" id="fname" name="name" placeholder="Your full name" autocomplete="name" required />
+              </div>
+              <div class="form-group">
+                <label for="fphone">Phone Number</label>
+                <input type="tel" id="fphone" name="phone" placeholder="+44 7XXX XXXXXX" autocomplete="tel" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="femail">Email Address</label>
+              <input type="email" id="femail" name="email" placeholder="you@example.com" autocomplete="email" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fduration">Rental Duration</label>
+                <select id="fduration" name="duration" required>
+                  <option value="" disabled selected>Select duration</option>
+                  <option value="daily">Daily</option>
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="fbudget">Monthly Budget</label>
+                <select id="fbudget" name="budget">
+                  <option value="" disabled selected>Select budget</option>
+                  <option value="under-300">Under £300/mo</option>
+                  <option value="300-500">£300 – £500/mo</option>
+                  <option value="500-800">£500 – £800/mo</option>
+                  <option value="800-plus">£800+/mo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fcar">Preferred Car</label>
+              <select id="fcar" name="car">
+                <option value="" disabled selected>Which car interests you?</option>
+                <option value="car-1">Car One</option>
+                <option value="car-2">Car Two</option>
+                <option value="any">Any / Not sure yet</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fmessage">Anything else? (Optional)</label>
+              <textarea id="fmessage" name="message" placeholder="Let us know when you'd need it, any specific requirements, or questions you have..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-gold" id="submitEnquiry">Send Enquiry</button>
+              <a class="btn btn-whatsapp" href="https://wa.me/447000000000" target="_blank" rel="noopener">
+                💬 WhatsApp Us
+              </a>
+            </div>
+          </form>
+        </div>
+
+        <div class="contact-panel">
+          <div class="contact-card">
+            <h4>Prefer to Call or Message?</h4>
+            <p>We're available on WhatsApp for quick questions, availability checks, or to get the ball rolling fast.</p>
+            <span class="wa-number">+44 7XXX XXXXXX</span>
+            <a class="btn btn-whatsapp" href="https://wa.me/447000000000" target="_blank" rel="noopener" style="width:100%; justify-content:center;">
+              💬 Message on WhatsApp
+            </a>
+          </div>
+
+          <div class="trust-card">
+            <h4>Why Rent With Us</h4>
+            <ul class="trust-list">
+              <li>Flexible rentals — daily, weekly or monthly</li>
+              <li>Fast approvals, no long waiting</li>
+              <li>Reliable, well-maintained vehicles</li>
+              <li>No long-term contracts</li>
+              <li>Based in London, UK</li>
+              <li>Simple process from enquiry to keys</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="foot-row">
+        <div class="foot-left">© <span id="year"></span> DreamCarsRentals. All rights reserved.</div>
+        <div class="foot-right">
+          <a href="#cars">Cars</a>
+          <a href="#how">How It Works</a>
+          <a href="#requirements">Requirements</a>
+          <a href="#enquiry">Enquire</a>
+          <a href="#top">↑ Back to top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Year
+  const yr = document.getElementById('year');
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  function closeMenu() {
+    mobileMenu?.classList.remove('open');
+    menuBtn?.setAttribute('aria-expanded', 'false');
+  }
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('open');
+    menuBtn?.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 860) closeMenu(); });
+
+  // Enquiry form — build mailto
+  const ENQUIRY_EMAIL = 'enquiries@dreamcarsrentals.co.uk'; // ← UPDATE THIS
+
+  const form = document.getElementById('enquiryForm');
+  const submitBtn = document.getElementById('submitEnquiry');
+
+  function buildMailto() {
+    const name     = document.getElementById('fname')?.value?.trim() || '';
+    const phone    = document.getElementById('fphone')?.value?.trim() || '';
+    const email    = document.getElementById('femail')?.value?.trim() || '';
+    const duration = document.getElementById('fduration')?.value || '';
+    const budget   = document.getElementById('fbudget')?.value || '';
+    const car      = document.getElementById('fcar')?.value || '';
+    const message  = document.getElementById('fmessage')?.value?.trim() || '';
+
+    const subject = `DreamCarsRentals Enquiry – ${name || 'New Customer'}`;
+    const body = [
+      'Hi DreamCarsRentals,',
+      '',
+      `I'd like to enquire about renting a car.`,
+      '',
+      `Name:           ${name}`,
+      `Phone:          ${phone}`,
+      `Email:          ${email}`,
+      `Preferred Car:  ${car}`,
+      `Rental Duration:${duration}`,
+      `Budget:         ${budget}`,
+      '',
+      message ? `Additional info:\n${message}` : '',
+      '',
+      'Thanks,',
+      name || 'A DreamCarsRentals enquirer',
+      '',
+      '— Sent via dreamcarsrentals.co.uk'
+    ].filter(l => l !== undefined).join('\n');
+
+    return `mailto:${ENQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
+  submitBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = buildMailto();
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    window.location.href = buildMailto();
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.car-card, .step-card, .req-item, .contact-card, .trust-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+
+});
+</script>
+
+</body>
+</html>
